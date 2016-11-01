@@ -1,4 +1,4 @@
 #!/usr/bin/with-contenv bash
 
 exec \
-	s6-setuidgid abc "${RUN_OPTS}" cardigann server
+	s6-setuidgid abc cardigann server
