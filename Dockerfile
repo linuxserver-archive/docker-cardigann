@@ -32,8 +32,6 @@ RUN \
 	/usr/bin/cardigann && \
 
 # cleanup
- apk del --purge \
-	build-dependencies && \
  rm -rf \
 	/tmp/*
 
