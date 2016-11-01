@@ -10,23 +10,23 @@ The [LinuxServer.io][linuxserverurl] team brings you another container release f
 * [IRC][ircurl] on freenode at `#linuxserver.io`
 * [Podcast][podcasturl] covers everything to do with getting the most from your Linux Server plus a focus on all things Docker and containerisation!
 
-# <image-name>
+# linuxserver/cardigann
 
-Provide a short, concise description of the application. No more than two SHORT paragraphs. Link to sources where possible and include an image illustrating your point if necessary. Point users to the original applications website, as that's the best place to get support - not here.
+[Cardigann][cardurl], a server for adding extra indexers to Sonarr, SickRage and CouchPotato via Torznab and TorrentPotato proxies. Behind the scenes Cardigann logs in and runs searches and then transforms the results into a compatible format. 
 
-Our Plex container has immaculate docs so follow that if in doubt for layout.
-
-`IMPORTANT, replace all instances of <image-name> with the correct dockerhub repo (ie linuxserver/plex) and <container-name> information (ie, plex)`
+[![cardigan](https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/cardigan.png)][cardurl]
+[cardurl]: https://github.com/cardigann/cardigann
 
 ## Usage
 
 ```
 docker create \
-  --name=<container-name> \
+  --name=cardigann \
   -v <path to data>:/config \
   -e PGID=<gid> -e PUID=<uid>  \
-  -p 1234:1234 \
-  <image-name>
+  -p 5060:5060 \
+  linuxserver/cardigann
+
 ```
 
 ## Parameters
@@ -37,13 +37,14 @@ So -p 8080:80 would expose port 80 from inside the container to be accessible fr
 http://192.168.x.x:8080 would show you what's running INSIDE the container on port 80.`
 
 
-
-* `-p 1234` - the port(s)
-* `-v /config` - explain what lives here
+* `-p 5060` - the port(s)
+* `-v /config` - Where cardigann should store it's config files
 * `-e PGID` for GroupID - see below for explanation
 * `-e PUID` for UserID - see below for explanation
+* `-e SOCKS_PROXY` - for using a socks proxy - *optional*
+* `-e HTTP_PROXY` - for using an HTTP proxy - *optional*
 
-It is based on alpine linux with s6 overlay, for shell access whilst the container is running do `docker exec -it <container-name> /bin/bash`.
+It is based on alpine linux with s6 overlay, for shell access whilst the container is running do `docker exec -it cardigann /bin/bash`.
 
 ### User / Group Identifiers
 
@@ -58,22 +59,26 @@ In this instance `PUID=1001` and `PGID=1001`. To find yours use `id user` as bel
 
 ## Setting up the application
 
-Insert a basic user guide here to get a n00b up and running with the software inside the container. DELETE ME
+Configure via the webui at `<your-ip>:5060`
+
+By adding a variable to the run command, `SOCKS_PROXY` or `HTTP_PROXY` cardigann can be used with a proxy, *eg* `-e SOCKS_PROXY=localhost:1080`
+
+The folder /config/definitions can be used to add additional tracker definitions (for more info see [Additional definitions](https://github.com/cardigann/cardigann#definitions)
 
 
 ## Info
 
-* Shell access whilst the container is running: `docker exec -it <container-name> /bin/bash`
-* To monitor the logs of the container in realtime: `docker logs -f <container-name>`
+* Shell access whilst the container is running: `docker exec -it cardigann /bin/bash`
+* To monitor the logs of the container in realtime: `docker logs -f cardigann`
 
 * container version number 
 
-`docker inspect -f '{{ index .Config.Labels "build_version" }}' <container-name>`
+`docker inspect -f '{{ index .Config.Labels "build_version" }}' cardigann`
 
 * image version number
 
-`docker inspect -f '{{ index .Config.Labels "build_version" }}' <image-name>`
+`docker inspect -f '{{ index .Config.Labels "build_version" }}' linuxserver/cardigann`
 
 ## Versions
 
-+ **dd.MM.yyyy:** This is the standard Version type now.
++ **01.11.2016:** Initial Release.
