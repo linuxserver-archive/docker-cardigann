@@ -5,6 +5,11 @@ MAINTAINER sparklyballs
 ARG GOPATH=/tmp/golang
 ARG CARDIGANN_DIR=$GOPATH/src/github.com/cardigann/cardigann
 
+# set version label
+ARG BUILD_DATE
+ARG VERSION
+LABEL build_version="Linuxserver.io version:- ${VERSION} Build-date:- ${BUILD_DATE}"
+
 # environment variables
 ENV CONFIG_DIR=/config
 
