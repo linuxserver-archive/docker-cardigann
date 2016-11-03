@@ -1,43 +1,50 @@
 FROM lsiobase/alpine
 MAINTAINER sparklyballs
 
-# environment settings
-ENV CONFIG_DIR="/config"
+# build variables
+ARG GOPATH=/tmp/golang
+ARG CARDIGANN_DIR=$GOPATH/src/github.com/cardigann/cardigann
 
 # set version label
 ARG BUILD_DATE
 ARG VERSION
 LABEL build_version="Linuxserver.io version:- ${VERSION} Build-date:- ${BUILD_DATE}"
 
-# install packages, update ca-certificates and create needed symlink for libs
-RUN \
- apk add --no-cache \
-	ca-certificates \
-	libc6-compat \
-	wget && \
- update-ca-certificates && \
- mkdir -p \
-	/lib64 && \
- ln /lib/ld-linux-x86-64.so.2 /lib64/ld-linux-x86-64.so.2 && \
+# environment variables
+ENV CONFIG_DIR=/config
 
-# install cardigan
- wget -O \
- /tmp/cardigann-src.tgz \
-	https://bin.equinox.io/c/3u8U4iwUn6o/cardigann-stable-linux-amd64.tgz && \
- tar xf \
- /tmp/cardigann-src.tgz -C \
-	/tmp/ && \
- install -Dm755 \
-	/tmp/cardigann \
-	/usr/bin/cardigann && \
+# install build packages
+RUN \
+ apk add --no-cache --virtual=build-dependencies \
+	g++ \
+	gcc \
+	git \
+	make && \
+
+ apk add --no-cache --virtual=build-dependencies2 \
+	--repository http://nl.alpinelinux.org/alpine/edge/community \
+	go && \
+
+# install runtime packages
+ apk add --no-cache \
+	ca-certificates && \
+
+# compile cardigann
+ git clone https://github.com/cardigann/cardigann.git "${CARDIGANN_DIR}" && \
+ git -C $CARDIGANN_DIR checkout $(git -C $CARDIGANN_DIR describe --tags --candidates=1 --abbrev=0) && \
+ make --debug --directory=$CARDIGANN_DIR install && \
+	install -Dm755 $GOPATH/bin/cardigann /usr/bin/cardigann && \
 
 # cleanup
+ apk del --purge \
+	build-dependencies \
+	build-dependencies2 && \
  rm -rf \
 	/tmp/*
 
-# add local files
+# add local files
 COPY root/ /
 
-# ports and volumes
+# ports and volumes
 EXPOSE 5060
 VOLUME /config
