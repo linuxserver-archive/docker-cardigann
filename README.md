@@ -83,5 +83,5 @@ The folder /config/definitions can be used to add additional tracker definitions
 
 ## Versions
 
-+ **01.11.2016:** Compiled using [sstamoulis'](https://github.com/sstamoulis) method
++ **03.11.2016:** Compiled using [sstamoulis'](https://github.com/sstamoulis) method
 + **01.11.2016:** Initial Release.
