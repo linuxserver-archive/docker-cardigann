@@ -83,5 +83,6 @@ The folder /config/definitions can be used to add additional tracker definitions
 
 ## Versions
 
++ **07.02.17:** Rebase to alpine 3.5.
 + **03.11.16:** Compiled using [sstamoulis'](https://github.com/sstamoulis) method
 + **01.11.16:** Initial Release.

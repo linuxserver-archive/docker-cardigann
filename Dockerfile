@@ -1,4 +1,4 @@
-FROM lsiobase/alpine
+FROM lsiobase/alpine:3.5
 MAINTAINER sparklyballs
 
 # build variables
@@ -19,11 +19,8 @@ RUN \
 	g++ \
 	gcc \
 	git \
+	go \
 	make && \
-
- apk add --no-cache --virtual=build-dependencies2 \
-	--repository http://nl.alpinelinux.org/alpine/edge/community \
-	go && \
 
 # install runtime packages
  apk add --no-cache \
@@ -37,8 +34,7 @@ RUN \
 
 # cleanup
  apk del --purge \
-	build-dependencies \
-	build-dependencies2 && \
+	build-dependencies && \
  rm -rf \
 	/tmp/*
 
