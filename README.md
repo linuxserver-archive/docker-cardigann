@@ -2,6 +2,8 @@
 [forumurl]: https://forum.linuxserver.io
 [ircurl]: https://www.linuxserver.io/irc/
 [podcasturl]: https://www.linuxserver.io/podcast/
+[appurl]: https://github.com/cardigann/cardigann
+[hub]: https://hub.docker.com/r/linuxserver/cardigann/
 
 [![linuxserver.io](https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/linuxserver_medium.png)][linuxserverurl]
 
@@ -12,12 +14,10 @@ The [LinuxServer.io][linuxserverurl] team brings you another container release f
 
 # linuxserver/cardigann
 [![](https://images.microbadger.com/badges/version/linuxserver/cardigann.svg)](https://microbadger.com/images/linuxserver/cardigann "Get your own version badge on microbadger.com")[![](https://images.microbadger.com/badges/image/linuxserver/cardigann.svg)](https://microbadger.com/images/linuxserver/cardigann "Get your own image badge on microbadger.com")[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/cardigann.svg)][hub][![Docker Stars](https://img.shields.io/docker/stars/linuxserver/cardigann.svg)][hub][![Build Status](http://jenkins.linuxserver.io:8080/buildStatus/icon?job=Dockers/LinuxServer.io/linuxserver-cardigann)](http://jenkins.linuxserver.io:8080/job/Dockers/job/LinuxServer.io/job/linuxserver-cardigann/)
-[hub]: https://hub.docker.com/r/linuxserver/cardigann/
 
-[Cardigann][cardurl], a server for adding extra indexers to Sonarr, SickRage and CouchPotato via Torznab and TorrentPotato proxies. Behind the scenes Cardigann logs in and runs searches and then transforms the results into a compatible format. 
+[Cardigann][appurl], a server for adding extra indexers to Sonarr, SickRage and CouchPotato via Torznab and TorrentPotato proxies. Behind the scenes Cardigann logs in and runs searches and then transforms the results into a compatible format. 
 
-[![cardigan](https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/cardigan.png)][cardurl]
-[cardurl]: https://github.com/cardigann/cardigann
+[![cardigan](https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/cardigan.png)][appurl]
 
 ## Usage
 
