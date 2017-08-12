@@ -20,23 +20,37 @@ RUN \
 	gcc \
 	git \
 	go \
-	make && \
+	make \
+	nodejs-npm && \
 
 # install runtime packages
  apk add --no-cache \
 	ca-certificates && \
 
 # compile cardigann
- git clone https://github.com/cardigann/cardigann.git "${CARDIGANN_DIR}" && \
+ git clone https://github.com/cardigann/cardigann.git ${CARDIGANN_DIR} && \
+ git clone https://github.com/creationix/nvm.git /root/.nvm && \
  git -C $CARDIGANN_DIR checkout $(git -C $CARDIGANN_DIR describe --tags --candidates=1 --abbrev=0) && \
- make --debug --directory=$CARDIGANN_DIR install && \
-	install -Dm755 $GOPATH/bin/cardigann /usr/bin/cardigann && \
+ cd ${CARDIGANN_DIR}/web && \
+ npm install && \
+ cd ${CARDIGANN_DIR} && \
+ export PATH=$GOPATH/bin:$PATH && \
+ make setup && \
+ make test && \
+ make build && \
+ make install && \
+ install -Dm755 \
+	$GOPATH/bin/cardigann \
+	/usr/bin/cardigann && \
 
-# cleanup
+# cleanup
  apk del --purge \
 	build-dependencies && \
  rm -rf \
-	/tmp/*
+	/root \
+	/tmp/* && \
+ mkdir -p \
+	/root
 
 # add local files
 COPY root/ /
