@@ -12,6 +12,7 @@ LABEL build_version="Linuxserver.io version:- ${VERSION} Build-date:- ${BUILD_DA
 
 # environment variables
 ENV CONFIG_DIR=/config
+ENV CARDIGANN_PORT=5060
 
 # install build packages
 RUN \
