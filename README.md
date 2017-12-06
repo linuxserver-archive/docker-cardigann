@@ -83,6 +83,7 @@ The folder /config/definitions can be used to add additional tracker definitions
 
 ## Versions
 
++ **06.12.17:** Rebase to alpine 3.7.
 + **12.08.17:** Add npm install to build stage.
 + **25.05.17:** Rebase to alpine 3.6.
 + **07.02.17:** Rebase to alpine 3.5.

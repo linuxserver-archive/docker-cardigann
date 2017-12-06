@@ -1,20 +1,20 @@
-FROM lsiobase/alpine:3.6
-MAINTAINER sparklyballs
-
-# build variables
-ARG GOPATH=/tmp/golang
-ARG CARDIGANN_DIR=$GOPATH/src/github.com/cardigann/cardigann
+FROM lsiobase/alpine:3.7
 
 # set version label
 ARG BUILD_DATE
 ARG VERSION
 LABEL build_version="Linuxserver.io version:- ${VERSION} Build-date:- ${BUILD_DATE}"
+LABEL maintainer="sparklyballs"
+
+# build variables
+ARG GOPATH=/tmp/golang
+ARG CARDIGANN_DIR=$GOPATH/src/github.com/cardigann/cardigann
 
 # environment variables
 ENV CONFIG_DIR=/config
 
-# install build packages
 RUN \
+ echo "**** install build packages ****" && \
  apk add --no-cache --virtual=build-dependencies \
 	g++ \
 	gcc \
@@ -22,12 +22,10 @@ RUN \
 	go \
 	make \
 	nodejs-npm && \
-
-# install runtime packages
+ echo "**** install runtime packages ****" && \
  apk add --no-cache \
 	ca-certificates && \
-
-# compile cardigann
+ echo "**** compile cardigann ****" && \
  git clone https://github.com/cardigann/cardigann.git ${CARDIGANN_DIR} && \
  git clone https://github.com/creationix/nvm.git /root/.nvm && \
  git -C $CARDIGANN_DIR checkout $(git -C $CARDIGANN_DIR describe --tags --candidates=1 --abbrev=0) && \
@@ -42,8 +40,7 @@ RUN \
  install -Dm755 \
 	$GOPATH/bin/cardigann \
 	/usr/bin/cardigann && \
-
-# cleanup
+ echo "**** cleanup ****" && \
  apk del --purge \
 	build-dependencies && \
  rm -rf \
