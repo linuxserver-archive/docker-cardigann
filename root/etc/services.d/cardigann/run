@@ -1,4 +1,4 @@
 #!/usr/bin/with-contenv bash
 
 exec \
-	s6-setuidgid abc cardigann server
+	s6-setuidgid abc cardigann server --port=$CARDIGANN_PORT --bind="0.0.0.0"

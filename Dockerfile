@@ -12,6 +12,7 @@ ARG CARDIGANN_DIR=$GOPATH/src/github.com/cardigann/cardigann
 
 # environment variables
 ENV CONFIG_DIR=/config
+ENV CARDIGANN_PORT=5060
 
 RUN \
  echo "**** install build packages ****" && \
