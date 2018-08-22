@@ -83,6 +83,7 @@ The folder /config/definitions can be used to add additional tracker definitions
 
 ## Versions
 
++ **22.08.18:** Rebase to alpine 3.8.
 + **06.05.18:** Use buildstage in Dockerfile.
 + **06.12.17:** Rebase to alpine 3.7.
 + **12.08.17:** Add npm install to build stage.
