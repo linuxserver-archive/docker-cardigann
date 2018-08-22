@@ -1,5 +1,8 @@
 FROM lsiobase/alpine:3.7 as buildstage
 ############## build stage ##############
+# currently cardigann doesn't build correctly using go 1.10
+# hence using alpine 3.7 for build stage
+
 # build variables
 ARG GOPATH=/tmp/golang
 ARG CARDIGANN_DIR=$GOPATH/src/github.com/cardigann/cardigann
@@ -12,13 +15,21 @@ RUN \
 	git \
 	go \
 	make \
-	nodejs-npm && \
- echo "**** compile cardigann ****" && \
+	nodejs-npm
+
+RUN \
+ echo "**** fetch source code and nvm ****" && \
  git clone https://github.com/cardigann/cardigann.git ${CARDIGANN_DIR} && \
  git clone https://github.com/creationix/nvm.git /root/.nvm && \
- git -C $CARDIGANN_DIR checkout $(git -C $CARDIGANN_DIR describe --tags --candidates=1 --abbrev=0) && \
+ git -C $CARDIGANN_DIR checkout $(git -C $CARDIGANN_DIR describe --tags --candidates=1 --abbrev=0)
+
+RUN \
+ echo "**** install node packages ****" && \
  cd ${CARDIGANN_DIR}/web && \
- npm install && \
+ npm install
+
+RUN \
+ echo "**** compile cardigann ****" && \
  cd ${CARDIGANN_DIR} && \
  export PATH=$GOPATH/bin:$PATH && \
  make setup && \
@@ -26,7 +37,7 @@ RUN \
  make build && \
  make install
 ############## runtime stage ##############
-FROM lsiobase/alpine:3.7
+FROM lsiobase/alpine:3.8
 
 # set version label
 ARG BUILD_DATE
