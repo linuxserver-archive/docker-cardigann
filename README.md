@@ -15,7 +15,7 @@ The [LinuxServer.io][linuxserverurl] team brings you another container release f
 # linuxserver/cardigann
 [![](https://images.microbadger.com/badges/version/linuxserver/cardigann.svg)](https://microbadger.com/images/linuxserver/cardigann "Get your own version badge on microbadger.com")[![](https://images.microbadger.com/badges/image/linuxserver/cardigann.svg)](https://microbadger.com/images/linuxserver/cardigann "Get your own image badge on microbadger.com")[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/cardigann.svg)][hub][![Docker Stars](https://img.shields.io/docker/stars/linuxserver/cardigann.svg)][hub][![Build Status](https://ci.linuxserver.io/buildStatus/icon?job=Docker-Builders/x86-64/x86-64-cardigann)](https://ci.linuxserver.io/job/Docker-Builders/job/x86-64/job/x86-64-cardigann/)
 
-[Cardigann][appurl], a server for adding extra indexers to Sonarr, SickRage and CouchPotato via Torznab and TorrentPotato proxies. Behind the scenes Cardigann logs in and runs searches and then transforms the results into a compatible format. 
+[Cardigann][appurl], a server for adding extra indexers to Sonarr, SickRage and CouchPotato via Torznab and TorrentPotato proxies. Behind the scenes Cardigann logs in and runs searches and then transforms the results into a compatible format.
 
 [![cardigan](https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/cardigan.png)][appurl]
 
@@ -33,7 +33,7 @@ docker create \
 
 ## Parameters
 
-`The parameters are split into two halves, separated by a colon, the left hand side representing the host and the right the container side. 
+`The parameters are split into two halves, separated by a colon, the left hand side representing the host and the right the container side.
 For example with a port -p external:internal - what this shows is the port mapping from internal to external of the container.
 So -p 8080:80 would expose port 80 from inside the container to be accessible from the host's IP on port 8080
 http://192.168.x.x:8080 would show you what's running INSIDE the container on port 80.`
@@ -73,7 +73,7 @@ The folder /config/definitions can be used to add additional tracker definitions
 * Shell access whilst the container is running: `docker exec -it cardigann /bin/bash`
 * To monitor the logs of the container in realtime: `docker logs -f cardigann`
 
-* container version number 
+* container version number
 
 `docker inspect -f '{{ index .Config.Labels "build_version" }}' cardigann`
 
@@ -83,6 +83,7 @@ The folder /config/definitions can be used to add additional tracker definitions
 
 ## Versions
 
++ **14.01.19:** Add multi arch and pipeline logic.
 + **22.08.18:** Rebase to alpine 3.8.
 + **06.05.18:** Use buildstage in Dockerfile.
 + **06.12.17:** Rebase to alpine 3.7.
