@@ -43,7 +43,7 @@ RUN \
  make build && \
  make install
 ############## runtime stage ##############
-FROM lsiobase/alpine.armhf:3.8
+FROM lsiobase/alpine.arm64:3.8
 
 # Add qemu to run on x86_64 systems
 COPY qemu-aarch64-static /usr/bin
