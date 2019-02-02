@@ -1,4 +1,4 @@
-FROM lsiobase/alpine:3.7 as buildstage
+FROM lsiobase/alpine.arm64:3.7 as buildstage
 ############## build stage ##############
 # currently cardigann doesn't build correctly using go 1.10
 # hence using alpine 3.7 for build stage
@@ -43,7 +43,10 @@ RUN \
  make build && \
  make install
 ############## runtime stage ##############
-FROM lsiobase/alpine:3.8
+FROM lsiobase/alpine.arm64:3.8
+
+# Add qemu to run on x86_64 systems
+COPY qemu-aarch64-static /usr/bin
 
 # set version label
 ARG BUILD_DATE
