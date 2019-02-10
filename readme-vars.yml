@@ -13,7 +13,9 @@ available_architectures:
 
 # container parameters
 param_container_name: "{{ project_name }}"
-param_usage_include_vols: false
+param_usage_include_vols: true
+param_volumes:
+  - { vol_path: "/config", vol_host_path: "<path to data>", desc: "Cardigann config" }
 param_usage_include_ports: true
 param_ports:
   - { external_port: "5060", internal_port: "5060", port_desc: "The port for the Cardigann webinterface" }
