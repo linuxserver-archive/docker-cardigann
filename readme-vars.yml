@@ -19,16 +19,19 @@ param_volumes:
 param_usage_include_ports: true
 param_ports:
   - { external_port: "5060", internal_port: "5060", port_desc: "The port for the Cardigann webinterface" }
-param_usage_include_env: false
+param_usage_include_env: true
+param_env_vars:
+  - { env_var: "SOCKS_PROXY", env_value: "IP:PORT", desc: "for using a socks proxy (optional)"}
+  - { env_var: "HTTP_PROXY", env_value: "IP:PORT", desc: "for using a HTTP proxy (optional)"}
 
 # application setup block
 app_setup_block_enabled: true
 app_setup_block: |
   Access the webui at `<your-ip>:5060`, for more information check out [{{ project_name|capitalize }}]({{ project_url }}).
 
-By adding a variable to the run command, `SOCKS_PROXY` or `HTTP_PROXY` cardigann can be used with a proxy, *eg* `-e SOCKS_PROXY=localhost:1080`
+  By adding a variable to the run command, `SOCKS_PROXY` or `HTTP_PROXY` cardigann can be used with a proxy, *eg* `-e SOCKS_PROXY=localhost:1080`
 
-  The folder /config/definitions can be used to add additional tracker definitions (for more info see [Additional definitions](https://github.com/cardigann/cardigann#definitions)
+  The folder `/config/definitions` can be used to add additional tracker definitions (for more info see [Additional definitions](https://github.com/cardigann/cardigann#definitions) ).
 # changelog
 changelogs:
   - { date: "01.02.19:", desc: "Multi arch images and pipeline build logic" }
