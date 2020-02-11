@@ -27,7 +27,7 @@ pipeline {
     DEV_DOCKERHUB_IMAGE = 'lsiodev/cardigann'
     PR_DOCKERHUB_IMAGE = 'lspipepr/cardigann'
     DIST_IMAGE = 'alpine'
-    MULTIARCH='true'
+    MULTIARCH='false'
     CI='true'
     CI_WEB='true'
     CI_PORT='5060'
