@@ -1,0 +1,21 @@
+#!/usr/bin/with-contenv bash
+
+echo '
+******************************************************
+******************************************************
+*                                                    *
+*                                                    *
+*          This image has been deprecated            *
+*                                                    *
+*           Use the currently supported              *
+*                                                    *
+*               linuxserver/jackett                  *
+*                                                    *
+*    https://hub.docker.com/r/linuxserver/jackett    *
+*                                                    *
+*   https://github.com/linuxserver/docker-jackett    *
+*                                                    *
+*                                                    *
+*                                                    *
+******************************************************
+******************************************************'
